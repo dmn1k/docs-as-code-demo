@@ -1,0 +1,32 @@
+:toc: left
+:numbered:              // Number all section headers
+:sectnumlevels: 5       // Number up to section level 5
+:toclevels: 2           // Table of content should have only two levels
+
+= Todo-App SW-Design Docs
+
+NOTE: For rendering of embedded diagrams http://www.graphviz.org[Graphviz] needs to be installed and available via the system path.
+
+== Summary
+
+// Includes a summary about all executed constraints and concepts including their status and description
+include::jQA:Summary[]
+
+== CI Build
+
+The following rule groups are executed during a build:
+
+[[default]]
+[role=group,includesGroups="maven:Default,package:Default,layer:Default"]
+- <<maven:Default>>
+- <<package:Default>>
+- <<layer:Default>>
+
+include::maven.adoc[]
+include::package.adoc[]
+include::layer.adoc[]
+
+== Imported Rules
+
+// Includes all executed rules that have been imported from plugins
+include::jQA:ImportedRules[]

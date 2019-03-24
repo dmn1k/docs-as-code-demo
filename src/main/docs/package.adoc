@@ -1,0 +1,26 @@
+[[package:Default]]
+[role=group,includesConstraints="dependency:PackageCycles",includesConcepts="package:DependencyDiagram"]
+== Package
+
+This chapter describes the concepts and constraints related to the package structure.
+
+=== Reports
+
+[[package:DependencyDiagram]]
+[source,cypher,role=concept,reportType="plantuml-component-diagram"]
+.Diagram about dependencies between packages.
+----
+MATCH
+  (artifact:Artifact)-[:CONTAINS]->(package:Package)-[:CONTAINS]->(:Type)
+WHERE
+  artifact.type <> "test-jar"
+OPTIONAL MATCH
+  (package)-[dependsOn:DEPENDS_ON]->(:Package)
+RETURN
+  {
+    role : "graph",
+    parent : artifact,
+    nodes : collect(package),
+    relationships: collect(dependsOn)
+  }
+----

@@ -1,4 +1,4 @@
-package com.github.dmn1k.todos.adapter.output;
+package com.github.dmn1k.todos.adapter.persistence;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface TodoRepository {
     Optional<TodoItemInfo> find(long id);
 
-    void persist(TodoItem item);
+    void persist(TodoItemInfo item);
 }

@@ -13,6 +13,8 @@
 
         <jackson.version>2.9.0</jackson.version>
         <jersey.version>2.22.4</jersey.version>
+
+        <jqassistant.version>1.6.0</jqassistant.version>
     </properties>
 
     <dependencies>
@@ -86,8 +88,75 @@
                     <name>${project.build.finalName}</name>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.buschmais.jqassistant</groupId>
+                <artifactId>jqassistant-maven-plugin</artifactId>
+                <version>${jqassistant.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>scan</goal>
+                            <goal>analyze</goal>
+                        </goals>
+                        <configuration>
+                            <warnOnSeverity>MINOR</warnOnSeverity>
+                            <failOnSeverity>CRITICAL</failOnSeverity>
+                            <scanIncludes>
+                                <scanInclude>
+                                    <path>${project.basedir}/.git</path>
+                                </scanInclude>
+                            </scanIncludes>
+                            <rule>
+                                <defaultConceptSeverity>INFO</defaultConceptSeverity>
+                                <defaultConstraintSeverity>MAJOR</defaultConstraintSeverity>
+                            </rule>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <rulesDirectory>src/main/docs</rulesDirectory>
+                    <reportProperties>
+                        <asciidoc.report.rule.directory>src/main/docs</asciidoc.report.rule.directory>
+                    </reportProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>de.kontext-e.jqassistant.plugin</groupId>
+                        <artifactId>jqassistant.plugin.git</artifactId>
+                        <version>1.6.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jqassistant.contrib.plugin</groupId>
+                        <artifactId>jqassistant-asciidoc-report-plugin</artifactId>
+                        <version>1.6.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jqassistant.contrib.plugin</groupId>
+                        <artifactId>jqassistant-plantuml-rule-plugin</artifactId>
+                        <version>1.6.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>com.buschmais.jqassistant</groupId>
+                <artifactId>jqassistant-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <repositories>
         <repository>
