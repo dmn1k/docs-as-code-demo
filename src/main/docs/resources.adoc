@@ -1,0 +1,12 @@
+[[resources:Default]]
+[role=group]
+== Resources
+
+Resources are the main part of REST-input adapters. They typically
+map a 'find'-operation to the GET-HTTP-Verb like this:
+
+.Example
+[source,java,linenums]
+--
+include::{main_sourcepath}/com/github/dmn1k/todos/adapter/input/TodoResource.java[tag=find]
+--

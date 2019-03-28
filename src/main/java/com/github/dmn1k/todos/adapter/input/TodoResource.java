@@ -15,6 +15,7 @@ public class TodoResource {
     @Inject
     private TodoItemService todoItems;
 
+    // tag::find[]
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
@@ -23,6 +24,7 @@ public class TodoResource {
                 .map(v -> Response.ok().entity(v).build())
                 .orElse(Response.noContent().build());
     }
+    // end::find[]
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
