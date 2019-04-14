@@ -4,7 +4,7 @@
 :toclevels: 2           // Table of content should have only two levels
 :source-highlighter: coderay
 :coderay-linenums-mode: inline
-:main_sourcepath: ${project.basedir}/src/main/java/
+:main_sourcepath: ../java/
 
 = Todo-App SW-Design Docs
 
@@ -17,9 +17,6 @@ include::jQA:Summary[]
 
 == Design & Architecture
 
-
-include::sub/doc.ad[]
-
 The following rule groups are executed during a build:
 
 [[default]]
@@ -28,10 +25,11 @@ The following rule groups are executed during a build:
 - <<package:Default>>
 - <<layer:Default>>
 
-include::sub/maven.adoc[]
-include::sub/package.adoc[]
-include::sub/layer.adoc[]
-include::sub/resources.adoc[]
+include::maven.adoc[]
+include::package.adoc[]
+include::layer.adoc[]
+include::resources.adoc[]
+include::sub/doc.adoc[]
 
 == Imported Rules
 

@@ -15,6 +15,8 @@
         <jersey.version>2.22.4</jersey.version>
 
         <jqassistant.version>1.6.0</jqassistant.version>
+
+        <docs.dir>${project.build.directory}/docs</docs.dir>
     </properties>
 
     <dependencies>
@@ -71,6 +73,14 @@
     </dependencies>
     <build>
         <finalName>jaxrs-demo</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/docs</directory>
+                <filtering>true</filtering>
+                <targetPath>${docs.dir}</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>com.oracle.weblogic</groupId>
@@ -103,12 +113,7 @@
                         <configuration>
                             <warnOnSeverity>MINOR</warnOnSeverity>
                             <failOnSeverity>CRITICAL</failOnSeverity>
-                            <scanIncludes>
-                                <scanInclude>
-                                    <path>${project.basedir}/.git</path>
-                                </scanInclude>
-                            </scanIncludes>
-                            <rule>
+                           <rule>
                                 <defaultConceptSeverity>INFO</defaultConceptSeverity>
                                 <defaultConstraintSeverity>MAJOR</defaultConstraintSeverity>
                             </rule>
@@ -116,21 +121,16 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <rulesDirectory>src/main/docs</rulesDirectory>
+                    <rulesDirectory>${docs.dir}</rulesDirectory>
                     <reportProperties>
-                        <asciidoc.report.rule.directory>src/main/docs</asciidoc.report.rule.directory>
+                        <asciidoc.report.rule.directory>${docs.dir}</asciidoc.report.rule.directory>
                     </reportProperties>
                 </configuration>
                 <dependencies>
-                    <dependency>
-                        <groupId>de.kontext-e.jqassistant.plugin</groupId>
-                        <artifactId>jqassistant.plugin.git</artifactId>
-                        <version>1.6.1</version>
-                    </dependency>
-                    <dependency>
+                   <dependency>
                         <groupId>org.jqassistant.contrib.plugin</groupId>
                         <artifactId>jqassistant-asciidoc-report-plugin</artifactId>
-                        <version>1.6.0</version>
+                        <version>1.7.0-SNAPSHOT</version>
                     </dependency>
                     <dependency>
                         <groupId>org.jqassistant.contrib.plugin</groupId>
