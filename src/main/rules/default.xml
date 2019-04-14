@@ -1,0 +1,9 @@
+<jqa:jqassistant-rules xmlns:jqa="http://www.buschmais.com/jqassistant/core/rule/schema/v1.3">
+
+    <group id="default">
+        <includeGroup refId="maven:*"/>
+        <includeGroup refId="package:*"/>
+        <includeGroup refId="layer:*"/>
+    </group>
+
+</jqa:jqassistant-rules>

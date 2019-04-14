@@ -80,6 +80,11 @@
                 <filtering>true</filtering>
                 <targetPath>${docs.dir}</targetPath>
             </resource>
+            <resource>
+                <directory>src/main/rules</directory>
+                <filtering>true</filtering>
+                <targetPath>${docs.dir}</targetPath>
+            </resource>
         </resources>
         <plugins>
             <plugin>
@@ -109,6 +114,7 @@
                         <goals>
                             <goal>scan</goal>
                             <goal>analyze</goal>
+                            <goal>report</goal>
                         </goals>
                         <configuration>
                             <warnOnSeverity>MINOR</warnOnSeverity>
@@ -139,24 +145,33 @@
                     </dependency>
                 </dependencies>
             </plugin>
-        </plugins>
-    </build>
 
-    <reporting>
-        <plugins>
             <plugin>
-                <groupId>com.buschmais.jqassistant</groupId>
-                <artifactId>jqassistant-maven-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
+                <groupId>com.github.dmn1k</groupId>
+                <artifactId>asciidoc-html-to-confluence-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>publish-confluence</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <api>http://localhost:8090/rest/api/</api>
+                            <spaceKey>BLA</spaceKey>
+                            <credentials>admin:admin</credentials>
+                            <createSubpages>false</createSubpages>
+                            <pagePrefix>BLA</pagePrefix>
+                            <ancestorId>327707</ancestorId>
+                            <preambleTitle>Dadidum</preambleTitle>
+                            <file>${project.build.directory}/jqassistant/report/asciidoc/index.html</file>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-    </reporting>
+    </build>
 
     <repositories>
         <repository>
